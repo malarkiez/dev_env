@@ -1,0 +1,26 @@
+# Specifies the version of the Docker Compose file format.
+version: '3'
+
+services:
+  dev_env:  
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dev_env:latest
+
+    # Defines directories or files to mount from the host system into the container.
+    volumes:
+      - /yourvolumehere/Code:/code
+
+    # Maps ports from the host to the container.
+    ports:
+      - "1123:8080"
+    # Password needed to authenticate to codeserver
+    environment:
+      - PASSWORD=YourPasswordHere
+
+    # Overrides the default command run by the container when it starts.
+    # Here, it starts 'code-server', binding it to all network interfaces on port 8080 without authentication.
+    command: ["code-server", "--bind-addr", "0.0.0.0:8080"]
+
+    restart: unless-stopped
