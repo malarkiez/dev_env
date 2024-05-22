@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip
 
 # Install networking tools
-RUN apt-get update && apt-get install -y iputils-ping netcat traceroute
+RUN apt-get update && apt-get install -y iputils-ping netcat traceroute net-tools
 
 # Add HashiCorp's GPG key, install necessary utilities, add their repository, and then install Terraform.
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - >/dev/null \
